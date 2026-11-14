@@ -12,8 +12,9 @@ suite, so a change here is a change to how every one of those repositories is re
 - **Ignore only what cannot be reviewed usefully.** An ignore pattern is for generated or
   vendored files with their own check against their source, and for lockfiles. Never ignore
   source code to quiet a reviewer.
-- **Say why.** Each ignore pattern or setting that is not obvious carries a comment saying
-  what it covers and why.
+- **Say why in the file.** When you add or change an ignore pattern or a setting whose reason
+  is not plain from its name, put a comment next to it saying what it covers and why. A pull
+  request description is not enough on its own, because the file outlives it.
 
 ## Checking a change
 
