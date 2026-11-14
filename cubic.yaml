@@ -12,6 +12,7 @@ reviews:
       # Generated or vendored files. Each has a required CI check that it matches its source.
       - "plugins/claude-code/dist/"
       - "**/generated/**"
+      - "**/Generated/**"
       - "**/*.g.cs"
       - "crates/district-app/src/l10n/text.rs"
       - "crates/district-app/po/"
@@ -37,6 +38,9 @@ reviews:
       - "Package.resolved"
     head_branches:
       - "dependabot/**"
+      # Release PRs into main: each change was already reviewed on its PR into release/*,
+      # where a ruleset makes open review threads block the merge.
+      - "release/**"
     pr_labels:
       - skip-cubic
 pr_descriptions:
