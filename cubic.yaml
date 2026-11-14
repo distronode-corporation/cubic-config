@@ -4,7 +4,7 @@
 version: 1
 reviews:
   enabled: true
-  sensitivity: medium
+  sensitivity: high
   external_contributors_require_manual_review: true
   ultrareview: disabled
   ignore:
