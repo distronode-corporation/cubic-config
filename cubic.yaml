@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://cubic.dev/schema/cubic-repository-config.schema.json
+# Organization-wide cubic review settings. A repo-level cubic.yaml would replace
+# these fields for that repo, so repos do not carry their own.
+version: 1
+reviews:
+  enabled: true
+  sensitivity: medium
+  external_contributors_require_manual_review: true
+  ultrareview: disabled
+  ignore:
+    files:
+      # Generated or vendored files. Each has a required CI check that it matches its source.
+      - "plugins/claude-code/dist/"
+      - "**/generated/**"
+      - "**/*.g.cs"
+      - "crates/district-app/src/l10n/text.rs"
+      - "crates/district-app/po/"
+      - "app/src/l10n-fr/"
+      - "app/src/main/res/values/strings.xml"
+      - "app/src/main/res/values/api_errors.xml"
+      - "app/src/main/res/values/numbers.xml"
+      - "app/src/main/res/values/scheduling.xml"
+      - "app/src/main/res/values/wire_labels.xml"
+      - "tools/l10n/*.py"
+      - "tools/l10n/SHA256SUMS"
+      - "**/*.min.js"
+      - "packaging/flatpak/cargo-sources.json"
+      # Lockfiles
+      - "**/package-lock.json"
+      - ".github/**/package-lock.json"
+      - "**/pnpm-lock.yaml"
+      - "**/Cargo.lock"
+      - "**/gradle.lockfile"
+      - "**/packages.lock.json"
+      - "go.sum"
+      - "uv.lock"
+      - "Package.resolved"
+    head_branches:
+      - "dependabot/**"
+    pr_labels:
+      - skip-cubic
+pr_descriptions:
+  generate: false
+  cubic_review_link: false
+issues:
+  fix_with_cubic_buttons: false
+  pr_comment_fixes: false
+  auto_fix: "off"
