@@ -15,7 +15,7 @@ reviews:
     - Never accept a secret, token, private key or credential in the diff, including in tests, fixtures, logs or docs.
     - Public repositories carry no infrastructure runbooks: no IAM steps, account IDs, internal hostnames, or operational procedures for Distronode's own servers.
     - Coverage floors only go up. Flag a lowered threshold, a new coverage exclusion, or a coverage pragma. Unreachable code is deleted (with a one-line comment), not excluded.
-    - Behaviour must be deterministic: flag fixed sleeps, wall-clock timing or test-order dependence that a test relies on.
+    - Code must behave deterministically: flag a fixed sleep standing in for a real wait, an unbounded retry, or a race between a timer and the event it waits for. (Test files are not reviewed here; CI runs every suite.)
     - A response or wire field is never renamed, removed or added without the matching contract or fixture change. Installed apps depend on it.
     - French (fr-CA) copy has no English left in it, and wire values (codes, enum strings) are never translated.
     - Written docs and user-facing copy use no em dashes.
