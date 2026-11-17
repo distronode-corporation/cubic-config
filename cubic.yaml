@@ -7,6 +7,25 @@ reviews:
   sensitivity: high
   external_contributors_require_manual_review: true
   ultrareview: disabled
+  # Learn review patterns from the code owner.
+  senior_reviewers: [seandean]
+  # Applies to every repository, in PR reviews and in local `cubic review` runs.
+  custom_instructions: |
+    These are Distronode's open-source repositories. Every one is public.
+    - Never accept a secret, token, private key or credential in the diff, including in tests, fixtures, logs or docs.
+    - Public repositories carry no infrastructure runbooks: no IAM steps, account IDs, internal hostnames, or operational procedures for Distronode's own servers.
+    - Coverage floors only go up. Flag a lowered threshold, a new coverage exclusion, or a coverage pragma. Unreachable code is deleted (with a one-line comment), not excluded.
+    - Code must behave deterministically: flag a fixed sleep standing in for a real wait, an unbounded retry, or a race between a timer and the event it waits for. (Test files are not reviewed here; CI runs every suite.)
+    - A response or wire field is never renamed, removed or added without the matching contract or fixture change. Installed apps depend on it.
+    - French (fr-CA) copy has no English left in it, and wire values (codes, enum strings) are never translated.
+    - Written docs and user-facing copy use no em dashes.
+    Report real defects with a concrete failure scenario. Skip style preferences the repository's linters already enforce.
+  custom_rules:
+    # Every repository has a CONTRIBUTING.md with its own build, test and coverage rules.
+    - name: Repository contributing rules
+      description: Enforce this repository's CONTRIBUTING.md (build, test, coverage and release rules). Flag changes that break a rule it states.
+      file_paths:
+        - CONTRIBUTING.md
   ignore:
     files:
       # Generated or vendored files. Each has a required CI check that it matches its source.
